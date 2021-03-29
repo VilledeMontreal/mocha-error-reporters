@@ -1,0 +1,39 @@
+{
+  "name": "mocha-error-reporters",
+  "version": "1.0.0",
+  "description": "mocha-error-reporters includes the full error object as JSON in the test report when an error has some meaningful extra information.",
+  "main": "lib/mochaErrorReporters.js",
+  "directories": {
+    "lib": "./lib"
+  },
+  "scripts": {
+    "start": "mocha test/**/*.test.js",
+    "minExample": "mocha --reporter=min test/testData/testExample.js",
+    "minWithFullErrorsExample": "mocha --require lib/mochaErrorReporters.js --reporter=minWithFullErrors test/testData/testExample.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://bitbucket.org/villemontreal/mocha-error-reporters.git"
+  },
+  "keywords": [
+    "mocha",
+    "reporter",
+    "error",
+    "unexpected",
+    "unhandled",
+    "full",
+    "complete"
+  ],
+  "author": "Stéphane Leblanc",
+  "license": "MIT",
+  "homepage": "https://bitbucket.org/villemontreal/mocha-error-reporters#readme",
+  "devDependencies": {
+    "chai": "4.2.0",
+    "child_process": "1.0.2",
+    "mocha": "8.2.1",
+    "path": "0.12.7"
+  },
+  "dependencies": {
+    "serialize-error": "8.0.0"
+  }
+}

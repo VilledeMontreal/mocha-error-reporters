@@ -1,67 +1,70 @@
-([Français](#french-version))
+([French version](README-fr.md))
 
-<a id='english-version' class='anchor' aria-hidden='true'/>
+# mocha-error-reporters
 
-# Template for open source code repositories of the Ville de Montréal
+When a test fails due to an unexpected error, mocha-error-reporters appends the full error in JSON format to the test report.
 
-## Template for README.md
+## Test report example
+```
+1 passing (5ms)
+  1 failing
 
-- Project description
+  1) Test Example
+       Test with error:
+     Error: Pow!
+      at Context.it (test/testData/testExample.js:9:17)
+  
+  Full Error:
+  {
+    "additionnalAttribute": "The key to understand this bug",
+    "name": "Error",
+    "message": "Pow!",
+    "stack": "Error: Pow!\n    at Context.it (test/testData/testExample.js:9:17)"
+  }
+```
 
-### Details
+Without mocha-error-reporters, the Full Error section would ne be present and it would be impossible to read ```additionnalAttribute``` which may be *the key to understand this bug*. All additionnal attributes (ex: inner error) will be fully serialized; thanks to the npm package [serialize-error](https://www.npmjs.com/package/serialize-error).
 
-- How does it work?
-- Who will use this project?
+## To Install
 
-### Build
+In your project, run this npm command:
 
-### Installation
+``` npm install mocha-error-reporters --save-dev ```
 
-### Testing
+## Usage
+Call mocha with:
 
-### License
+`mocha --require mocha-error-reporters --reporter=specWithFullErrors`
+
+mocha-error-reporters provides 8 reporters:
+*  [specWithFullErrors](https://mochajs.org/#spec)
+*  [minWithFullErrors](https://mochajs.org/#min)
+*  [dotWithFullErrors](https://mochajs.org/#dot-matrix)
+*  [listWithFullErrors](https://mochajs.org/#list)
+*  [nyanWithFullErrors](https://mochajs.org/#nyan)
+*  [xUnitWithFullErrors](https://mochajs.org/#xunit)
+*  [progressWithFullErrors](https://mochajs.org/#progress)
+*  [landingWithFullErrors](https://mochajs.org/#landing-strip) 
+
+## Custom reporters
+Mocha [allows you to define custom reporters](https://github.com/visionmedia/mocha/wiki/Third-party-reporters). 
+
+The code snippet below shows how unexpected errors can be serialized in your custom reporters. 
+
+```javascript
+const { extendReporterWithFullErrors } = require('mocha-error-reporters');
+const yourCustomReporter;
+const yourCustomReporterWithFullErrors = extendReporterWithFullErrors(yourCustomReporter);
+```
+
+## License
 
 The source code of this project is distributed under the [MIT License](LICENSE).
 
-### Contributing
+## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md#english-version).
+See [CONTRIBUTING.md](CONTRIBUTING.md).
 
-### Code of Conduct
+## Code of Conduct
 
 Participation in this poject is governed by the [Code of Conduct](CODE_OF_CONDUCT.md).
-
-______________________
-
-([English](#english-version))
-
-<a id='french-version' class='anchor' aria-hidden='true'/>
-
-# Gabarit pour dépôts de code source libre de la Ville de Montréal
-
-## Gabarit pour README.md
-
-Description du projet
-
-### Détails
-
-- Comment fonctionne le produit?
-- À qui s'adresse le produit?
-
-### Bâtir
-
-### Installer
-
-### Tester
-
-### Contribuer
-
-Voir [CONTRIBUTING.md](CONTRIBUTING.md#french-version)
-
-### Licence et propriété intellectuelle
-
-Le code source de ce projet est libéré sous la licence [MIT License](LICENSE).
-
-### Code de Conduite
-
-La participation à ce projet est réglementée part le [Code de Conduite](CODE_OF_CONDUCT.md#french-version)

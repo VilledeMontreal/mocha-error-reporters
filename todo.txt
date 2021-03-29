@@ -1,0 +1,5 @@
+*** après commité ***
+- publish and test npm package 1,5h
+- search and replace bitbucket 0h
+- thanks https://github.com/MediaComem/mocha-api-errors and/or team city 0,5h
+
